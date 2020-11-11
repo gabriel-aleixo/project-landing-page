@@ -152,6 +152,6 @@ let heroObserver = new IntersectionObserver(heroCallback, intersectionOptions);
 
 heroObserver.observe(mainHero);
 
-totopButton.addEventListener('click', () => window.scrollTo({top: 100, left: 100, behavior: 'smooth'}));
+totopButton.addEventListener('click', () => window.scrollTo({top: 0, left: 0, behavior: 'smooth'}));
 
 
