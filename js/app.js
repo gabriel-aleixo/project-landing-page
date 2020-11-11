@@ -24,6 +24,16 @@ const sectionsList = buildSectionsList();
 
 const navigation = document.querySelector('#navbar__list');
 
+const mainHero = document.querySelector('.main__hero');
+
+let intersectionOptions = {
+    rootMargin: '10px 0px 150px 0px',
+    threshold: 0.75
+  };
+
+
+const totopButton = document.querySelector('.totop__button');
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -71,12 +81,11 @@ function buildNav() {
 
     };
 
-
 };
 
 // Add class 'active' to section when near top of viewport
 
-let intersectionCallback = (entries) => {
+let sectionCallback = (entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.className = 'is__active';
@@ -93,16 +102,11 @@ let intersectionCallback = (entries) => {
       }
     });
   };
-
-let options = {
-    rootMargin: '10px 0px 150px 0px',
-    threshold: 0.75
-  }
   
-let observer = new IntersectionObserver(intersectionCallback, options);
+let sectionObserver = new IntersectionObserver(sectionCallback, intersectionOptions);
 
 for (let section of sections) {
-    observer.observe(section);
+    sectionObserver.observe(section);
 };
 
 // Scroll to anchor ID using scrollTO event
@@ -128,5 +132,26 @@ document.addEventListener('DOMContentLoaded', buildNav);
 navigation.addEventListener('click', scrollToSection);
 
 // Set sections as active
+
+// Add a scroll to top button on the page that’s only visible when the user scrolls below the fold of the page.
+let heroCallback = (entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        totopButton.classList.add('fade__in');
+        totopButton.classList.remove('fade__out');
+
+      } else if (entry.isIntersecting) {
+        totopButton.classList.add('fade__out');
+        totopButton.classList.remove('fade__in');
+
+      }
+    });
+  };
+
+let heroObserver = new IntersectionObserver(heroCallback, intersectionOptions);
+
+heroObserver.observe(mainHero);
+
+totopButton.addEventListener('click', () => window.scrollTo({top: 100, left: 100, behavior: 'smooth'}));
 
 
