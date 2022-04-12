@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/gabriel-aleixo/project-landing-page/issues"
   },
-  "homepage": "https://github.com/gabriel-aleixo/project-landing-page#readme"
+  "homepage": "https://github.com/gabriel-aleixo/project-landing-page#readme",
+  "devDependencies": {
+    "eslint": "^7.13.0",
+    "eslint-config-standard": "^16.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1"
+  }
 }
